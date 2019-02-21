@@ -33,13 +33,31 @@ public class WhiskyTrackerApplicationTests {
 
 	@Test
 	public void findWhiskiesByYear() {
-		List<Whisky> found = whiskyRepository.findWhiskiesByYear(2018);
+		List<Whisky> found = whiskyRepository.findWhiskiesByYear(2018);  // can use this for a derived query
 		assertEquals(2, found.size());
 	}
 
 	@Test
 	public void findDistilleryByRegion() {
 		List<Distillery> found = distilleryRepository.findDistilleryByRegion("Speyside");
+		assertEquals(2, found.size());
+	}
+
+	@Test
+	public void findWhiskyByDistilleryAndAge() {
+		List<Whisky> found = whiskyRepository.findWhiskyByAgeAndDistilleryId(15, 1L);
+		assertEquals(1, found.size());
+	}
+
+	@Test
+	public void findWhiskyByRegion() {
+		List<Whisky> found = whiskyRepository.findWhiskyByRegion("Highland");
+		assertEquals(2, found.size());
+	}
+
+	@Test
+	public void findDistilleryWith12YearOldWhisky() {
+		List<Distillery> found = distilleryRepository.findDistilleryByWhiskyAge(12);
 		assertEquals(2, found.size());
 	}
 }
